@@ -1,5 +1,6 @@
 package com.said.weatherapiexample;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.said.weatherapiexample.Api.WeatherApi;
 import com.said.weatherapiexample.Api.WeatherInfo;
 
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,23 +24,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Istanbul https://api.openweathermap.org/data/2.5/weather?q=Istanbul,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69
-
-    // Izmir https://api.openweathermap.org/data/2.5/weather?q=Izmir,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69
-
-    // Denizli https://api.openweathermap.org/data/2.5/weather?q=Denizli,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69
-
-    // Ankara https://api.openweathermap.org/data/2.5/weather?q=Ankara,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69
-
-    // Antalya https://api.openweathermap.org/data/2.5/weather?q=Antalya,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69
-
 
     private static final String BASE_URL= "https://api.openweathermap.org/";
-    WeatherInfo weatherInfos;
-    List<TempInfo> tempInfoList;
     Retrofit retrofit;
-    TextView txt1,txt2,txt3,txt4;
-    EditText edtx;
+    TextView txt1,txt2,txt3,txt4,txt5;
+
+
 
 
     @Override
@@ -69,11 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
         txt1=findViewById(R.id.name);
-        txt2=findViewById(R.id.temp);
+        txt2=findViewById(R.id.tempoo);
         txt3=findViewById(R.id.pressure);
         txt4=findViewById(R.id.humidity);
-        edtx=findViewById(R.id.editTextNumber);
-
+        txt5=findViewById(R.id.wind);
 
     }
 
@@ -87,16 +77,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
                 WeatherInfo weatherInfo=response.body();
 
+                String temp_val=String.valueOf(Math.round(weatherInfo.main.temp-272));
 
-               System.out.println(weatherInfo.name);
-                System.out.println(weatherInfo.main.temp);
-                System.out.println(weatherInfo.main.pressure);
-                System.out.println(weatherInfo.main.humidity);
 
-                txt1.setText(weatherInfo.name);
-                //txt2.setText(weatherInfo.main.temp);
-                txt2.setText(String.valueOf(weatherInfo.main.pressure));
-                txt3.setText(String.valueOf(weatherInfo.main.humidity));
+                txt1.setText(weatherInfo.name.toUpperCase(Locale.ROOT));
+                txt2.setText(temp_val);
+                txt3.setText(weatherInfo.main.pressure);
+                txt4.setText(weatherInfo.main.humidity+"%");
+                txt5.setText(weatherInfo.wind.speed+" km/s");
 
 
 

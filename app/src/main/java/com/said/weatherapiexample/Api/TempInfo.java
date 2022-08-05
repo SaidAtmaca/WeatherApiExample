@@ -11,11 +11,11 @@ public class TempInfo {
 
     @SerializedName("pressure")
     @Expose
-    public int pressure;
+    public String pressure;
 
     @SerializedName("humidity")
     @Expose
-    public int humidity;
+    public String humidity;
 
 
     public float getTemp() {
@@ -26,19 +26,19 @@ public class TempInfo {
         this.temp = temp;
     }
 
-    public int getPressure() {
+    public String getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(String pressure) {
         this.pressure = pressure;
     }
 
-    public int getHumidity() {
+    public String getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(int humidity) {
+    public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
 }

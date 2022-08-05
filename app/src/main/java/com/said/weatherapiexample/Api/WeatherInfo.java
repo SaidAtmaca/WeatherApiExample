@@ -16,6 +16,18 @@ public class WeatherInfo {
     @Expose
     public TempInfo main;
 
+    @SerializedName("wind")
+    @Expose
+    public WindInfo wind;
+
+    public WindInfo getWind() {
+        return wind;
+    }
+
+    public void setWind(WindInfo wind) {
+        this.wind = wind;
+    }
+
     public String getName() {
         return name;
     }

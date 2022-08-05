@@ -5,9 +5,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface WeatherApi {
+public interface WeatherApi { //In here, We request the weather infos on based city
 
-    @GET("data/2.5/weather?q=Antalya,turkey&appid=9d63dc3d5d1a21ac26b585bd0b47dc69")
+    @GET("data/2.5/weather?q=Istanbul,turkey&appid=API KEY")
     Call<WeatherInfo> getData();
 
 }
